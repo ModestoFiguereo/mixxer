@@ -8,6 +8,10 @@
     "test": "gulp test/unit",
     "prepublish": "npm run compile"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ModestoFiguereo/mixxer.git"
+  },
   "keywords": [
     "mixin",
     "design",
