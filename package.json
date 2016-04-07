@@ -1,0 +1,16 @@
+{
+  "name": "mixxer",
+  "version": "1.0.0",
+  "description": "This package allows developers to implement the Mixin design pattern.",
+  "main": "index.js",
+  "scripts": {
+    "test": "gulp test"
+  },
+  "keywords": [
+    "mixin",
+    "design",
+    "pattern"
+  ],
+  "author": "Modesto Figuereo Fernandez <figuereo.fernandez.modesto@gmail.com> (http://www.modestofiguereo.com)",
+  "license": "MIT"
+}
