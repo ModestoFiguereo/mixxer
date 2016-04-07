@@ -59,7 +59,7 @@ gulp.task('default', ['test'], () => {
  * Runs test files.
  */
 gulp.task('test/unit', ['compile'], shell.task([
-  `blue-tape ${TMP_DIR}/${TEST_FILES} | faucet`,
+  `tape ${TMP_DIR}/${TEST_FILES} | faucet`,
 ]));
 
 /**
