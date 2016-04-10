@@ -13,7 +13,7 @@ This package allows you to implement the Mixin design pattern, extend one object
 #### Extend from several objects
 ```js
 mixxer(Programmer)
- .extendFrom(Person,)
+ .extendFrom(Person)
  .extendFrom(Employ)
  .extendFrom(SalsaDancer);
 ```
