@@ -1,8 +1,8 @@
 {
   "name": "mixxer",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "This package allows developers to implement the Mixin design pattern.",
-  "main": ".tmp/src/Mixxer.js",
+  "main": ".tmp/src/mixxer.js",
   "scripts": {
     "compile": "gulp compile",
     "test": "gulp test/unit",
