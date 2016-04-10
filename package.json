@@ -1,6 +1,6 @@
 {
   "name": "mixxer",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "This package allows developers to implement the Mixin design pattern.",
   "main": ".tmp/src/Mixxer.js",
   "scripts": {
