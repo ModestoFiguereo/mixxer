@@ -1,12 +1,10 @@
-function extend(receiver, giver) {
-  const whitelist = [].slice.apply(arguments, [2]);
-  const isNotWhitelistEmpty = not(isWhitelistEmpty);
-
+function extend(receiver, giver, ...whitelist) {
   let predicate = null;
-  if (isNotWhitelistEmpty(whitelist)) {
-    predicate = isInWhitelist(whitelist);
+
+  if (whitelist.length !== 0) {
+    predicate = (property) => whitelist.indexOf(property) !== -1;
   } else {
-    predicate = not(hasOwnProperty(receiver));
+    predicate = not((property) => Object.hasOwnProperty(receiver.prototype, property));
   }
 
   Object.keys(giver.prototype)
@@ -17,25 +15,7 @@ function extend(receiver, giver) {
 }
 
 function not(expression) {
-  return function() {
-    return !expression.apply(this, arguments);
-  };
-}
-
-function isWhitelistEmpty(whitelist) {
-  return whitelist.length === 0;
-}
-
-function isInWhitelist(whitelist) {
-  return function(property) {
-    return whitelist.indexOf(property) !== -1;
-  };
-}
-
-function hasOwnProperty(object) {
-  return function(property) {
-    return Object.hasOwnProperty(object.prototype, property);
-  };
+  return (...args) => !expression.apply(this, args);
 }
 
 export default extend;

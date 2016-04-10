@@ -1,24 +1,24 @@
 import test from 'tape';
 import mixxer from '../src/mixxer';
 
-test('extend from one object', function(assert) {
+test('extend from one object', (assert) => {
   mixxer.extend(Person, Mover);
 
-  assert.doesNotThrow(executeMoverMethodsOnPersonObject, 'methods should be assigned properly.');
+  assert.doesNotThrow(callExtendedMethodsOnPerson, 'methods should be assigned properly.');
   assert.end();
 });
 
-test('extend from several objects', function(assert) {
+test('extend from several objects', (assert) => {
   mixxer(Truck)
     .extendFrom(Vehicle)
     .extendFrom(Mover, 'moveForward', 'moveLeft', 'moveRight');
 
-  assert.doesNotThrow(executeVehicleAndMoverMethodsOnTruckObject, 'methods should be assigned properly.');
-  assert.throws(executeNotExtendedMoverMethodsOnTruckObject, 'moveBackWard method should not be assigned.');
+  assert.doesNotThrow(callExtendedMethodsOnTruck, 'methods should be assigned properly.');
+  assert.throws(callNotExtendedMethodsOnTruck, 'moveBackWard method should not be assigned.');
   assert.end();
 });
 
-function executeMoverMethodsOnPersonObject() {
+function callExtendedMethodsOnPerson() {
   const modesto = new Person('Modesto', 'Figuereo');
   modesto.moveForward();
   modesto.moveBackWard();
@@ -26,7 +26,7 @@ function executeMoverMethodsOnPersonObject() {
   modesto.moveLeft();
 }
 
-function executeVehicleAndMoverMethodsOnTruckObject() {
+function callExtendedMethodsOnTruck() {
   const truck = new Truck('E02-5FU', 'red');
   truck.moveForward();
   truck.moveRight();
@@ -35,7 +35,7 @@ function executeVehicleAndMoverMethodsOnTruckObject() {
   truck.brake();
 }
 
-function executeNotExtendedMoverMethodsOnTruckObject() {
+function callNotExtendedMethodsOnTruck() {
   const truck = new Truck('E02-5FU', 'red');
   truck.moveBackWard();
 }
@@ -51,27 +51,29 @@ function Truck(plate, color) {
 }
 
 function Vehicle() {}
+
 Vehicle.prototype = {
-  accelerate: function() {
+  accelerate() {
     console.log('accelerating...');
   },
-  brake: function() {
+  brake() {
     console.log('braking...');
   },
 };
 
 function Mover() {}
+
 Mover.prototype = {
-  moveForward: function() {
+  moveForward() {
     console.log('moving forward');
   },
-  moveBackWard: function() {
+  moveBackWard() {
     console.log('move backward');
   },
-  moveRight: function() {
+  moveRight() {
     console.log('move right');
   },
-  moveLeft: function() {
+  moveLeft() {
     console.log('move left');
   },
 };
