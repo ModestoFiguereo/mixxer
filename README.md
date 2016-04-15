@@ -1,5 +1,5 @@
 # Mixxer
-This package allows you to implement the Mixin design pattern, extend one object's prototype from other objects' prototypes.
+This package allows you to implement the Mixin design pattern. Extend one object from other objects.
 
 ## Install
 `npm install mixxer --save`
