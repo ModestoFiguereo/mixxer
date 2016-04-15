@@ -8,6 +8,13 @@ test('extend from one object', (assert) => {
   assert.end();
 });
 
+test('extend one object literal ({}) from a function', (assert) => {
+  mixxer.extend(SomeObject, Mover);
+
+  assert.doesNotThrow(callExtendedMethodsOnSomeObject, 'methods should be assigned properly.');
+  assert.end();
+});
+
 test('extend from several objects', (assert) => {
   mixxer(Truck)
     .extendFrom(Vehicle)
@@ -39,6 +46,15 @@ function callNotExtendedMethodsOnTruck() {
   const truck = new Truck('E02-5FU', 'red');
   truck.moveBackWard();
 }
+
+function callExtendedMethodsOnSomeObject() {
+  SomeObject.moveForward();
+  SomeObject.moveBackWard();
+  SomeObject.moveRight();
+  SomeObject.moveLeft();
+}
+
+const SomeObject = {};
 
 function Person(firstName, lastName) {
   this.firstName = firstName;
