@@ -7,17 +7,27 @@ function extend(receiver, giver, ...whitelist) {
   }
 
   const properties = keys(giver).filter(predicate);
-  each(properties, (property) => {
-    if (isFunction(receiver) && isFunction(giver)) { // both are functions
-      receiver.prototype[property] = giver.prototype[property];
-    } else if (isFunction(receiver) && !isFunction(giver)) { // only receiver is function
-      receiver.prototype[property] = giver[property];
-    } else if (!isFunction(receiver) && isFunction(giver)) { // only giver is a function
-      receiver[property] = giver.prototype[property];
-    } else { // neither giver nor receiver are functions
-      receiver[property] = giver[property];
+  if (isFunction(receiver)) {
+    if (isFunction(giver)) {
+      each(properties, (property) => {
+        receiver.prototype[property] = giver.prototype[property];
+      });
+    } else {
+      each(properties, (property) => {
+        receiver.prototype[property] = giver[property];
+      });
     }
-  });
+  } else {
+    if (isFunction(giver)) {
+      each(properties, (property) => {
+        receiver[property] = giver.prototype[property];
+      });
+    } else {
+      each(properties, (property) => {
+        receiver[property] = giver[property];
+      });
+    }
+  }
 }
 
 function hasOwnProperty(object, property) {
