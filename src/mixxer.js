@@ -1,12 +1,15 @@
 import extend from './lib';
 
-function mixxer(Base) {
+function mixxer(receiver) {
   return {
-    extendFrom(Mixin, ...whitelist) {
-      const args = [Base, Mixin].concat(whitelist);
+    extendFrom(giver, ...whitelist) {
+      const args = [receiver, giver].concat(whitelist);
       extend.apply(this, args);
 
       return this;
+    },
+    ship() {
+      return receiver;
     },
   };
 }

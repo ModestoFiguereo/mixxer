@@ -28,6 +28,8 @@ function extend(receiver, giver, ...whitelist) {
       });
     }
   }
+
+  return receiver;
 }
 
 function hasOwnProperty(object, property) {
